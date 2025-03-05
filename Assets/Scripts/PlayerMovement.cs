@@ -7,7 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ballSpeed = 2f;
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private LayerMask groundLayer;
-
+    [SerializeField] private InputManager inputManager;
+     void Start()
+    {
+        //adding MovePlater as a listener to the OnMove event
+        inputManager.OnMove.AddListener(MovePlayer);
+    }
 
     private bool isGrounded = false;
 
@@ -31,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return isGrounded;
     }
-    public void MoveBall(Vector2 input)
+    public void MovePlayer(Vector2 input)
     {
         Vector3 inputXZPlane = new(input.x, 0, input.y);
         capsuleRigidBody.AddForce(inputXZPlane * ballSpeed);
