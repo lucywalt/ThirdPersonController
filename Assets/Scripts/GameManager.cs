@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-       
+        scoreText.text = "Score: " + score;
 
     }
 
-    private void IncrementScore()
+    void IncrementScore()
     {
         score++;
         scoreText.text = $"Score: {score}";

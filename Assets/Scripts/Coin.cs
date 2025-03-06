@@ -2,10 +2,19 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+
+    [SerializeField] private float rotationSpeed = 100f;
+
+     void Update()
+    {
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+    }
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+
         {
+
             Destroy(gameObject);
         }
     }
