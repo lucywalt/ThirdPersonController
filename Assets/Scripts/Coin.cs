@@ -1,11 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
 
     [SerializeField] private float rotationSpeed = 100f;
-
-     void Update()
+    public UnityEvent OnCoin = new UnityEvent();
+    void Start()
+    {
+        
+    }
+    void Update()
     {
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
@@ -14,8 +19,9 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
 
         {
-
+            OnCoin.Invoke();
             Destroy(gameObject);
+            
         }
     }
 }
