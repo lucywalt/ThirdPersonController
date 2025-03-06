@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,11 +9,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private InputManager inputManager;
-     void Start()
+
+    [SerializeField] private CinemachineCamera freeLookCamera;
+    void Start()
     {
         //adding MovePlater as a listener to the OnMove event
         inputManager.OnMove.AddListener(MovePlayer);
         inputManager.OnJump.AddListener(Jump);
+    }
+
+     void Update()
+    {
+        transform.forward = freeLookCamera.transform.forward;
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
     private bool isGrounded = false;
