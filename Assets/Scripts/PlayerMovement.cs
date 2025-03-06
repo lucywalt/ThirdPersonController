@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //adding MovePlater as a listener to the OnMove event
         inputManager.OnMove.AddListener(MovePlayer);
+        inputManager.OnJump.AddListener(Jump);
     }
 
     private bool isGrounded = false;
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(Vector2 input)
     {
         Vector3 inputXZPlane = new(input.x, 0, input.y);
-        capsuleRigidBody.AddForce(inputXZPlane * ballSpeed);
+        capsuleRigidBody.AddRelativeForce(inputXZPlane * ballSpeed);
     }
 
     public void Jump()
